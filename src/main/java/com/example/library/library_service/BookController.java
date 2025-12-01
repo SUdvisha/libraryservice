@@ -27,16 +27,27 @@ public class BookController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("findById/{bookId}")
-    public ResponseEntity<Book> findBookById(@RequestParam Long bookId){
-        var book = bookService.findById(bookId);
-        return new ResponseEntity<>(book.orElse(null),HttpStatus.OK);
-    }
+//    @GetMapping("findById/{bookId}")
+//    public ResponseEntity<Book> findBookById(@RequestParam Long bookId){
+//        var book = bookService.findById(bookId);
+//        return new ResponseEntity<>(book.orElse(null),HttpStatus.OK);
+//    }
+//
+//    @DeleteMapping("deleteById/{bookId}")
+//    public ResponseEntity<Book> deleteBookById(@RequestParam Long bookId){
+//        bookService.deleteById(bookId);
+//        return  new ResponseEntity<>(HttpStatus.OK);
+//    }
+@GetMapping("findById/{bookId}")
+public ResponseEntity<Book> findBookById(@PathVariable Long bookId){
+    var book = bookService.findById(bookId);
+    return new ResponseEntity<>(book.orElse(null),HttpStatus.OK);
+}
 
     @DeleteMapping("deleteById/{bookId}")
-    public ResponseEntity<Book> deleteBookById(@RequestParam Long bookId){
+    public ResponseEntity<Void> deleteBookById(@PathVariable Long bookId){
         bookService.deleteById(bookId);
-        return  new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("update")
