@@ -27,13 +27,13 @@ public class BookController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("findById")
+    @GetMapping("findById/{bookId}")
     public ResponseEntity<Book> findBookById(@RequestParam Long bookId){
         var book = bookService.findById(bookId);
         return new ResponseEntity<>(book.orElse(null),HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteById")
+    @DeleteMapping("deleteById/{bookId}")
     public ResponseEntity<Book> deleteBookById(@RequestParam Long bookId){
         bookService.deleteById(bookId);
         return  new ResponseEntity<>(HttpStatus.OK);
@@ -44,4 +44,5 @@ public class BookController {
         book = bookService.save(book);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
+//    ok
 }
